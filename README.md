@@ -129,6 +129,46 @@ www_youtube_com__Veritasium__This_Is_Why_Flying_Is_Safe_20251127_231234_f003.png
 - Uitgebreidere instellingenpagina in plaats van alleen de popup.
 - Meer configurabele sneltoetsen via de browser.
 
+## Intrinsieke frame-captures (yt-dlp + ffmpeg)
+
+De extensie gebruikt bewust alleen officiële WebExtension-API's en kan daarom **geen ruwe videoframes** uit YouTube trekken – alleen screenshots van wat je ziet. Voor echte framegrabs zonder UI kun je buiten de browser om werken:
+
+1. **Installeer tools**
+   - [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) (YouTube-downloader)
+   - [`ffmpeg`](https://ffmpeg.org/) (video → frames)
+
+2. **Download de video**
+
+   ```bash
+   yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o "video.%(ext)s" "https://www.youtube.com/watch?v=..."
+   ```
+
+3. **Extraheer frames met ffmpeg**
+
+   Enkele voorbeelden:
+
+   - Eén frame op een vaste tijd (bijv. 1 minuut 23 seconden):
+
+     ```bash
+     ffmpeg -ss 00:01:23 -i video.mkv -frames:v 1 frame_0123.png
+     ```
+
+   - Elke seconde één frame:
+
+     ```bash
+     ffmpeg -i video.mkv -vf "fps=1" frames/frame_%04d.png
+     ```
+
+   - Hogere framerate (bijv. 5 fps):
+
+     ```bash
+     ffmpeg -i video.mkv -vf "fps=5" frames/frame_%04d.png
+     ```
+
+Deze methode geeft je **exacte videoframes zonder overlays** (geen YouTube-UI, geen browserchrome), maar vereist wel dat je de video eerst lokaal downloadt.
+
+> Let op: respecteer altijd de gebruiksvoorwaarden en auteursrechten van de content die je downloadt.
+
 ## Licentie
 
 Kies zelf de gewenste licentie (bijv. MIT) en voeg een `LICENSE`-bestand toe als je deze code publiek wilt delen of laten forken.
