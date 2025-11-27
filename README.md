@@ -112,6 +112,23 @@ www_youtube_com__Veritasium__This_Is_Why_Flying_Is_Safe_20251127_231234_f003.png
   - Firefox: `about:debugging` → Inspect bij de extensie.
   - Chromium: `chrome://extensions` → klik op *service worker/background page*.
 
+## Changelog
+
+- **v0.1.0** – eerste publieke versie
+  - Single & burst capture.
+  - Slimme crop van het videogebied (zonder YouTube-bovenbalk en afgeronde hoeken).
+  - Floating `Capture`-knop op YouTube-watchpagina's.
+  - Bestandsnaam met host + kanaal + titel + volgnummer.
+  - Automatisch downloaden naar de standaard downloadmap.
+
+## Toekomstige ideeën
+
+- Mogelijkheid om meer sites dan alleen YouTube te ondersteunen.
+- Extra opties voor het bestandsnaam-schema (bijv. resolutie, eigen prefix).
+- Optionele overlay met timestamp/frame-informatie in de capture.
+- Uitgebreidere instellingenpagina in plaats van alleen de popup.
+- Meer configurabele sneltoetsen via de browser.
+
 ## Licentie
 
 Kies zelf de gewenste licentie (bijv. MIT) en voeg een `LICENSE`-bestand toe als je deze code publiek wilt delen of laten forken.
